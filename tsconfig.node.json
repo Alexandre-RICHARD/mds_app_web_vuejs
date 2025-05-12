@@ -3,7 +3,7 @@
     // Custom
     "baseUrl": ".",
     "paths": {
-      "styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"]
     },
 
     "target": "ES2022",

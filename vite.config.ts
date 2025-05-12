@@ -1,10 +1,8 @@
-import { fileURLToPath } from 'url';
-import { dirname, resolve } from 'path';
+import { resolve } from 'path';
 import { defineConfig } from 'vitest/config';
 import vue from '@vitejs/plugin-vue';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = resolve();
 
 export default defineConfig({
   plugins: [vue()],
@@ -33,7 +31,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
-      styles: resolve(__dirname, 'src/styles'),
+      '@styles': resolve(__dirname, 'src/styles'),
     },
   },
 });
