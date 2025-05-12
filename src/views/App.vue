@@ -1,5 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Homepage from "./pages/homepage/Homepage.vue";
+</script>
 
-<template>Text</template>
+<template>
+  <Homepage />
+</template>
 
 <style lang="scss"></style>
