@@ -1,42 +1,38 @@
-# ChessGame
+# Dernière étape du Grand Projet Applicatif - Application web
 
-Bonjour, bienvenue sur le répo de mon jeu d'échec. C'est l'un des premiers projets que j'ai fait quand j'étais encore à l'école O'clock. Je l'ai repris et abandonné plusieurs fois, intégré à mon portfolio puis séparé de nouveau. Il est aujourd'hui indépendant même si accessible depuis le portfolio. Codé en Vue.JS, il a encore beaucoup d'amélioration prévu que j'espère prendre le temps de mettre en place
+## Jour 1 - Lundi 12 mai 2025
 
-Voici [le site](https://chessgame.alexandre-richard.fr/) en question.
+### Matin
+- Initialisation du projet Vue.JS front à partir d'un vieux projet Vue.JS
+- Récupération du projet back node.JS
+- Suppression de webpack et remplacement par Vite
+- Initialisation de Eslint et gros débuggage
+- Ajout et configuration de typescript
+- Ajout et test de scss
+- Ajout et configuration de Vitest, et d'un reporter de test pour expliciter les résultats et montrer le coverage
 
-Et [son répo](https://github.com/Alexandre-RICHARD/ChessGame)
-Ainsi que le [répo du serveur](https://github.com/Alexandre-RICHARD/Portfolio-Back) lié.
+### Après-midi
 
-## Historique des versions
+## Jour 2 - Mardi 13 mai 2025
 
-### Version 1
+### Matin
 
-<details>
+### Après-midi
 
-### 1.0.0 `5 août 2023`
+## Jour 3 - Mercredi 4 juin 2025
 
--   Création du repo unique pour ce projet et premier commit malgré l'état déjà avancé du projet
+### Matin
 
-### 1.0.1 `12 août 2023`
+### Après-midi
 
--   Finiolage de petits détails pour la mise en prod commune avec tous les autres projets
--   Rajout d'un htaccess pour bien gérer l'accès à l'index.html une fois hébergé
--   Rajout du htaccess au .gitignore
--   Remaniement du webpack.config.js, du package.json et du readme.md
--   Changement du favicon
+## Jour 4 - Jeudi 5 juin 2025
 
-### 1.0.2 `13 août 2023`
+### Matin
 
--   Mise à jour des packages npm
--   Rajout d'un script pnpm pour mettre à jour plus facilement les dépendances
+### Après-midi
 
-### 1.0.3 `18 août 2023`
+## Jour 5 - Vendredi 6 juin 2025
 
--   Rajout de deux lignes de configurations pour webpack et vueJS
+### Matin
 
-### 1.0.4 `21 août 2023`
-
--   Maintenant que j'ai récupéré le nom de domaine, actualisation de tous les liens sortant
--   Mise à jour des packages npm
-
-</details>
+### Après-midi
