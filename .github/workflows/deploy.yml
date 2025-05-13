@@ -56,4 +56,5 @@ jobs:
       run: |
         echo "$SSH_PRIVATE_KEY_GITHUB_ACTIONS" > key.pem
         chmod 600 key.pem
+        ssh -i key.pem -o StrictHostKeyChecking=no $SSH_VPS_USER@$SSH_VPS_HOST "rm -rf $SSH_VPS_PROJECT_LOCATION*"
         rsync -az --delete -e "ssh -i key.pem -o StrictHostKeyChecking=no" build/ $SSH_VPS_USER@$SSH_VPS_HOST:$SSH_VPS_PROJECT_LOCATION
