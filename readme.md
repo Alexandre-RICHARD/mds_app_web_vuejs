@@ -18,6 +18,9 @@
 
 ### Matin
 - Continue sur le déploiement et le CI/CD
+- Rajouter pinia
+- Rajouter une librairie de composant
+- Rajouter tailwind
 
 ### Après-midi
 
