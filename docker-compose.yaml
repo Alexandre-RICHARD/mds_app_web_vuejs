@@ -1,7 +1,0 @@
-services:
-  vue-builder:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ./build:/app/build
