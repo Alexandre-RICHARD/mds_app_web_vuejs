@@ -4,7 +4,7 @@
     "scripts": {
         "start": "vite --open",
         "build": "vue-tsc -b && vite build",
-        "build-preview": "vite preview",
+        "build-preview": "vite preview --open",
         " === Common Test === ": "",
         "global-test": "pnpm check-types && pnpm lint-fix && pnpm unit-test-once",
         "unit-test-watch": "vitest watch",
