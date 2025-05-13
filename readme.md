@@ -12,10 +12,12 @@
 - Ajout et configuration de Vitest, et d'un reporter de test pour expliciter les résultats et montrer le coverage
 
 ### Après-midi
+- Initialisation du CI/CD et du déploiement
 
 ## Jour 2 - Mardi 13 mai 2025
 
 ### Matin
+- Continue sur le déploiement et le CI/CD
 
 ### Après-midi
 
