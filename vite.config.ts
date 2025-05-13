@@ -59,15 +59,13 @@ export default defineConfig({
           return "assets/others/[name]-[hash][extname]";
         },
         manualChunks: (fileName) => {
-          if (fileName.includes("node_modules")) return "nodeModules";
           const translationsFilesRegex =
             /src\/.*\/translations\/.*\.translations\.ts/;
           if (translationsFilesRegex.test(fileName)) {
             const language = fileName.split("translations/")[1].split("/")[0];
             return `translations-${language}`;
           }
-          if (fileName.includes("/src/")) return "mds-gpa-front";
-          return "app";
+          return "index";
         },
       },
     },
