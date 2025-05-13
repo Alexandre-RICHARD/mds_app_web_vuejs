@@ -34,6 +34,7 @@ export default defineConfig({
       '@styles': resolve(__dirname, 'src/styles'),
     },
   },
+  base: "./",
   build: {
     assetsInlineLimit: 0,
     assetsDir: "./",
