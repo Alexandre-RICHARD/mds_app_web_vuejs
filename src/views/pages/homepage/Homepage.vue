@@ -7,7 +7,7 @@ const doubleNumber = randomFunction(2);
 </script>
 
 <template>
-  <div>Text {{ doubleNumber }}</div>
+  <div>Text {{ doubleNumber }} test</div>
   <LoadingLogo />
   <RandomSVG />
 </template>
