@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import LoadingLogo from "../../components/LoadingLogo.vue";
-import RandomSVG from "../../svg/RandomSVG.vue";
-import { randomFunction } from "./randomFunction";
+import AppHeader from "../../components/AppHeader.vue";
+import { useCounterStore } from "@/stores/counter";
 
-const doubleNumber = randomFunction(2);
+const counter = useCounterStore();
 </script>
 
 <template>
-  <div>Text {{ doubleNumber }} test</div>
-  <LoadingLogo />
-  <RandomSVG />
+  <v-app>
+    <AppHeader />
+    <v-main class="p-4">
+      <div class="text-center">
+        <v-btn color="primary" @click="counter.increment">Increment</v-btn>
+        <p class="mt-2 text-xl font-bold">Count: {{ counter.count }}</p>
+      </div>
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss"></style>
+<style scoped></style>

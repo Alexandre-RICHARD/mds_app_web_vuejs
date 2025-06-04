@@ -1,11 +1,12 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vitest/config';
 import vue from '@vitejs/plugin-vue';
+import vuetify from 'vite-plugin-vuetify';
 
 const __dirname = resolve();
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [vue(), vuetify()],
   test: {
     include: ['src/**/*.test.*'],
     exclude: [],

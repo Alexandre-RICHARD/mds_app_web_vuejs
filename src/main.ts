@@ -1,7 +1,13 @@
 import "./styles/index.scss";
 
-import { type Component, createApp } from "vue";
+import { createApp, type Component } from "vue";
+import { createVuetify } from "vuetify";
+import "vuetify/styles";
+import "@mdi/font/css/materialdesignicons.css";
 
+import pinia from "./stores";
 import App from "./views/App.vue";
 
-createApp(App as Component).mount("#app");
+const vuetify = createVuetify();
+
+createApp(App as Component).use(pinia).use(vuetify).mount("#app");
