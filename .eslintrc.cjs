@@ -95,6 +95,7 @@ module.exports = {
     // Vue
     "vue/multi-word-component-names": "off",
     "vue/singleline-html-element-content-newline": "off",
+    "vue/html-self-closing": "off",
 
     // Disable old and depreciated rules
     "@typescript-eslint/lines-between-class-members": "off",
