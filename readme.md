@@ -27,14 +27,25 @@
 ## Jour 3 - Mercredi 4 juin 2025
 
 ### Matin
+- Compléter la base
+- Faire la vue magasin avec quelques produits
+- Intégrer le get
+- Faire la vue panier
 
 ### Après-midi
+- Gérer la suppression et modification et ajout de choses dans le panier
+- Créer la vue commande
+- Permettre de valider un panier avec adresse et paiement
 
 ## Jour 4 - Jeudi 5 juin 2025
 
 ### Matin
+- Recherche de produit
+- Différenciation de connexion
+- Possibilité de créer un produit
 
 ### Après-midi
+- Apporter des finitions autant que possibles
 
 ## Jour 5 - Vendredi 6 juin 2025
 
