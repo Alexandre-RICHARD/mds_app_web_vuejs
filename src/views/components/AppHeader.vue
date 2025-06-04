@@ -4,51 +4,59 @@ import { ref } from "vue";
 import LoginModal from "./LoginModal.vue";
 import RegisterModal from "./RegisterModal.vue";
 
-const showLogin = ref(false);
-const showRegister = ref(false);
+const showLoginModal = ref(false);
+const showRegisterModal = ref(false);
 </script>
 
 <template>
-  <v-app-bar
-    flat
-    class="px-4 bg-gray-200"
-  >
+  <header class="flex items-center px-4 py-2 bg-gray-200">
     <img
       src="@/assets/logo.png"
       alt="Logo"
       class="h-8 mr-4"
     />
-    <v-spacer />
-    <v-btn
-      variant="text"
-      class="mr-2"
-      @click="showLogin = true"
+    <div class="flex-1" />
+    <button
+      class="mr-2 text-blue-600 hover:underline"
+      @click="showLoginModal = true"
     >
       Connexion
-    </v-btn>
-    <v-btn
-      color="primary"
-      @click="showRegister = true"
+    </button>
+    <button
+      class="bg-blue-600 text-white px-2 py-1 rounded"
+      @click="showRegisterModal = true"
     >
       Inscription
-    </v-btn>
-  </v-app-bar>
+    </button>
+  </header>
 
   <LoginModal
-    v-model="showLogin"
+    :visible="showLoginModal"
     @switch="
       () => {
-        showLogin = false;
-        showRegister = true;
+        showLoginModal = false;
+        showRegisterModal = true;
+      }
+    "
+    @submit="() => {}"
+    @close="
+      () => {
+        showLoginModal = false;
       }
     "
   />
   <RegisterModal
-    v-model="showRegister"
+    :visible="showRegisterModal"
     @switch="
       () => {
-        showRegister = false;
-        showLogin = true;
+        showRegisterModal = false;
+        showLoginModal = true;
+      }
+    "
+    @submit="() => {}"
+    @close="
+      () => {
+        showRegisterModal = false;
       }
     "
   />

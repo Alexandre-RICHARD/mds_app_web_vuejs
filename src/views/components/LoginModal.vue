@@ -1,61 +1,72 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
-const props = defineProps<{ modelValue: boolean }>();
+import ModalTemplate from "./ModalTemplate.vue";
+
+const props = defineProps<{ visible: boolean }>();
 const emit = defineEmits<{
-  (e: "update:modelValue", value: boolean): void;
+  (e: "close"): void;
+  (e: "submit"): void;
   (e: "switch"): void;
 }>();
-
-const dialog = computed({
-  get: () => props.modelValue,
-  set: (v: boolean) => emit("update:modelValue", v),
-});
 
 const showPassword = ref(false);
 </script>
 
 <template>
-  <v-dialog
-    v-model="dialog"
-    width="400"
-  >
-    <v-card>
-      <v-card-title class="text-lg font-bold">Connexion</v-card-title>
-      <v-card-text>
-        <v-text-field
-          label="Email"
-          type="email"
-          class="mb-2"
-        />
-        <v-text-field
-          :type="showPassword ? 'text' : 'password'"
-          label="Mot de passe"
-          :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-          class="mb-2"
-          @click:append-inner="showPassword = !showPassword"
-        />
-        <div class="text-right">
-          <v-btn
-            variant="text"
-            size="small"
-          >
-            Mot de passe oublié ?
-          </v-btn>
+  <transition name="fade">
+    <ModalTemplate
+      v-if="props.visible"
+      max-width="500px"
+      max-height="400px"
+      @close="emit('close')"
+    >
+      <div
+        class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+      >
+        <div class="bg-white rounded shadow w-96 p-4">
+          <h3 class="text-lg font-bold mb-4">Connexion</h3>
+          <input
+            type="email"
+            placeholder="Email"
+            class="mb-2 w-full border p-2 rounded"
+          />
+          <div class="relative mb-2">
+            <input
+              :type="showPassword ? 'text' : 'password'"
+              placeholder="Mot de passe"
+              class="w-full border p-2 pr-10 rounded"
+            />
+            <span
+              class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+              @click="showPassword = !showPassword"
+            >
+              {{ showPassword ? "🙈" : "👁" }}
+            </span>
+          </div>
+          <div class="text-right mb-4">
+            <button class="text-sm text-blue-600 hover:underline">
+              Mot de passe oublié ?
+            </button>
+          </div>
+          <div class="flex justify-end">
+            <button
+              class="bg-blue-600 text-white px-3 py-1 rounded"
+              @click="emit('submit')"
+            >
+              Se connecter
+            </button>
+          </div>
+          <div class="flex justify-end pt-2">
+            <button
+              class="text-sm text-blue-600 hover:underline"
+              @click="emit('switch')"
+            >
+              Je n'ai pas encore de compte
+            </button>
+          </div>
         </div>
-      </v-card-text>
-      <v-card-actions class="justify-between">
-        <v-spacer />
-        <v-btn color="primary">Se connecter</v-btn>
-      </v-card-actions>
-      <v-card-actions class="justify-end pt-0">
-        <v-btn
-          variant="text"
-          @click="emit('switch')"
-        >
-          Je n'ai pas encore de compte
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+      </div>
+    </ModalTemplate>
+  </transition>
 </template>
