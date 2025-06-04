@@ -94,10 +94,12 @@ module.exports = {
 
     // Vue
     "vue/multi-word-component-names": "off",
+    "vue/singleline-html-element-content-newline": "off",
 
     // Disable old and depreciated rules
     "@typescript-eslint/lines-between-class-members": "off",
     "@typescript-eslint/no-throw-literal": "off",
+    "react-hooks/rules-of-hooks": "off"
   },
   overrides: [],
 };
