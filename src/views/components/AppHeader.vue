@@ -9,30 +9,26 @@ const showRegister = ref(false);
 </script>
 
 <template>
-  <v-app-bar
-    flat
-    class="px-4 bg-gray-200"
-  >
+  <header class="flex items-center px-4 bg-gray-200">
     <img
       src="@/assets/logo.png"
       alt="Logo"
       class="h-8 mr-4"
     />
-    <v-spacer />
-    <v-btn
-      variant="text"
-      class="mr-2"
+    <div class="flex-1" />
+    <button
+      class="mr-2 text-blue-600 hover:underline"
       @click="showLogin = true"
     >
       Connexion
-    </v-btn>
-    <v-btn
-      color="primary"
+    </button>
+    <button
+      class="bg-blue-600 text-white px-2 py-1 rounded"
       @click="showRegister = true"
     >
       Inscription
-    </v-btn>
-  </v-app-bar>
+    </button>
+  </header>
 
   <LoginModal
     v-model="showLogin"

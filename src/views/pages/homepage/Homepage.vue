@@ -6,18 +6,18 @@ const counter = useCounterStore();
 </script>
 
 <template>
-  <v-app>
+  <div>
     <AppHeader />
-    <v-main class="p-4">
+    <main class="p-4">
       <div class="text-center">
-        <v-btn
-          color="primary"
+        <button
+          class="bg-blue-600 text-white px-3 py-1 rounded"
           @click="counter.increment"
         >
           Increment
-        </v-btn>
+        </button>
         <p class="mt-2 text-xl font-bold">Count: {{ counter.count }}</p>
       </div>
-    </v-main>
-  </v-app>
+    </main>
+  </div>
 </template>

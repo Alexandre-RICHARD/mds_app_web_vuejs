@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const userFirstName = ref("");
 const userLastName = ref("");
@@ -7,64 +7,84 @@ const userMailAddress = ref("");
 const userRawPassword = ref("");
 const userRawPasswordConfirmation = ref("");
 
+const props = defineProps<{ modelValue: boolean }>();
 const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void;
   (e: "switch"): void;
 }>();
 
+const dialog = computed({
+  get: () => props.modelValue,
+  set: (v: boolean) => emit("update:modelValue", v),
+});
+
 const showPassword = ref(false);
 </script>
 
 <template>
-  <v-dialog width="400">
-    <v-card>
-      <v-card-title class="text-lg font-bold">Inscription</v-card-title>
-      <v-card-text>
-        <v-text-field
-          v-model="userFirstName"
-          label="Prénom"
-          class="mb-2"
-        />
-        <v-text-field
-          v-model="userLastName"
-          label="Nom"
-          class="mb-2"
-        />
-        <v-text-field
-          v-model="userMailAddress"
-          label="Email"
-          type="email"
-          class="mb-2"
-        />
-        <v-text-field
+  <div
+    v-if="dialog"
+    class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+  >
+    <div class="bg-white rounded shadow w-96 p-4">
+      <h3 class="text-lg font-bold mb-4">Inscription</h3>
+      <input
+        v-model="userFirstName"
+        placeholder="Prénom"
+        class="mb-2 w-full border p-2 rounded"
+      />
+      <input
+        v-model="userLastName"
+        placeholder="Nom"
+        class="mb-2 w-full border p-2 rounded"
+      />
+      <input
+        v-model="userMailAddress"
+        type="email"
+        placeholder="Email"
+        class="mb-2 w-full border p-2 rounded"
+      />
+      <div class="relative mb-2">
+        <input
           v-model="userRawPassword"
           :type="showPassword ? 'text' : 'password'"
-          label="Mot de passe"
-          :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-          class="mb-2"
-          @click:append-inner="showPassword = !showPassword"
+          placeholder="Mot de passe"
+          class="w-full border p-2 pr-10 rounded"
         />
-        <v-text-field
+        <span
+          class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+          @click="showPassword = !showPassword"
+        >
+          {{ showPassword ? '🙈' : '👁' }}
+        </span>
+      </div>
+      <div class="relative mb-2">
+        <input
           v-model="userRawPasswordConfirmation"
           :type="showPassword ? 'text' : 'password'"
-          label="Confirmation du mot de passe"
-          :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-          class="mb-2"
-          @click:append-inner="showPassword = !showPassword"
+          placeholder="Confirmation du mot de passe"
+          class="w-full border p-2 pr-10 rounded"
         />
-      </v-card-text>
-      <v-card-actions class="justify-between">
-        <v-spacer />
-        <v-btn color="primary">S'inscrire</v-btn>
-      </v-card-actions>
-      <v-card-actions class="justify-end pt-0">
-        <v-btn
-          variant="text"
+        <span
+          class="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer"
+          @click="showPassword = !showPassword"
+        >
+          {{ showPassword ? '🙈' : '👁' }}
+        </span>
+      </div>
+      <div class="flex justify-end mt-4">
+        <button class="bg-blue-600 text-white px-3 py-1 rounded">
+          S'inscrire
+        </button>
+      </div>
+      <div class="flex justify-end pt-2">
+        <button
+          class="text-sm text-blue-600 hover:underline"
           @click="emit('switch')"
         >
           J'ai déjà un compte
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+        </button>
+      </div>
+    </div>
+  </div>
 </template>
