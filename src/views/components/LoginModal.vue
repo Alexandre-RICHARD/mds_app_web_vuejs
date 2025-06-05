@@ -7,14 +7,25 @@ import ModalTemplate from "./ModalTemplate.vue";
 const props = defineProps<{ visible: boolean }>();
 const emit = defineEmits<{
   (e: "close"): void;
-  (e: "submit"): void;
   (e: "switch"): void;
 }>();
 
 const showPassword = ref(false);
-const email = ref("");
-const password = ref("");
+const email = ref("alexandrichard99@gmail.com");
+const password = ref("au4uqbf11");
 const { login } = useLogin();
+
+async function handleLogin() {
+  try {
+    await login({
+      email: email.value,
+      password: password.value,
+    });
+    emit("close");
+  } catch (error) {
+    console.error(error);
+  }
+}
 </script>
 
 <template>
@@ -58,12 +69,7 @@ const { login } = useLogin();
           <div class="flex justify-end">
             <button
               class="bg-blue-600 text-white px-3 py-1 rounded"
-              @click="
-                async () => {
-                  await login(email, password);
-                  emit('submit');
-                }
-              "
+              @click="handleLogin"
             >
               Se connecter
             </button>

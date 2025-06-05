@@ -1,18 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { useAuth } from "../../features/users/useAuth";
-import { deleteCookie } from "../../helpers/cookie/deleteCookie.helper";
+import { useUserStore } from "../../stores/user";
 import LoginModal from "./LoginModal.vue";
 import RegisterModal from "./RegisterModal.vue";
 
 const showLoginModal = ref(false);
 const showRegisterModal = ref(false);
-const { isLogged } = useAuth();
-
-const logout = () => {
-  deleteCookie("token");
-};
+const userStore = useUserStore();
 </script>
 
 <template>
@@ -23,7 +18,7 @@ const logout = () => {
       class="h-8 mr-4"
     />
     <div class="flex-1" />
-    <template v-if="!isLogged">
+    <template v-if="!userStore.isConnected">
       <button
         class="mr-2 text-blue-600 hover:underline"
         @click="showLoginModal = true"
@@ -38,9 +33,15 @@ const logout = () => {
       </button>
     </template>
     <template v-else>
+      <router-link
+        to="/profile"
+        class="text-l font-bold pr-2"
+      >
+        {{ userStore.fullName }}
+      </router-link>
       <button
         class="bg-red-600 text-white px-2 py-1 rounded"
-        @click="logout"
+        @click="userStore.disconnect"
       >
         Déconnexion
       </button>

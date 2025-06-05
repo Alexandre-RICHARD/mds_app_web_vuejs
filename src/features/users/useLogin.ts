@@ -5,17 +5,27 @@ import { fetcherHelper } from "@/helpers/api/fetcher.helper";
 import { setCookie } from "@/helpers/cookie/setCookie.helper";
 
 import { ApiEndpointEnum } from "../../enums/apiEndpoint.enum";
+import { CookieEnum } from "../../enums/cookie.enum";
+import { useUserStore } from "../../stores/user";
+import type { LoginReponseType } from "./useLogin.reponse.type";
 
 const { VITE_API_URL } = import.meta.env;
 
 export function useLogin() {
+  const storeUser = useUserStore();
   const loading = ref(false);
   const error = ref<string | null>(null);
 
-  const login = async (email: string, password: string) => {
+  const login = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
     loading.value = true;
     error.value = null;
-    const response = await fetcherHelper<{ token: string }>({
+    const response = await fetcherHelper<LoginReponseType>({
       apiUrl: VITE_API_URL as string,
       endPoint: ApiEndpointEnum.USER_LOGIN,
       method: FetchMethodsEnum.POST,
@@ -25,7 +35,12 @@ export function useLogin() {
     loading.value = false;
     const token = response.headers!.get("Authorization");
     if (response.success && response.data && token) {
-      setCookie({ name: "token", value: token, hours: 1 });
+      const fullName = `${response.data.user.firstName} ${response.data.user.lastName}`;
+      setCookie({ name: CookieEnum.TOKEN, value: token, hours: 12 });
+      setCookie({ name: CookieEnum.FULLNAME, value: fullName, hours: 12 });
+      storeUser.login({
+        fullName,
+      });
       return true;
     }
     error.value = response.status;

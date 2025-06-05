@@ -27,6 +27,7 @@ async function handleRegister() {
       password: password.value,
       confirmationPassword: confirmationPassword.value,
     });
+    emit("close");
   } catch (error) {
     console.error(error);
   }

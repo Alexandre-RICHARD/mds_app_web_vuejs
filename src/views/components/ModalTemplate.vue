@@ -20,9 +20,7 @@ const emit = defineEmits<(e: "close") => void>();
       }"
       @click.stop
     >
-      <div class="modal-content-container">
-        <slot />
-      </div>
+      <slot />
     </div>
   </div>
 </template>
