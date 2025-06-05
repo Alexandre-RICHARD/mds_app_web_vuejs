@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import { useLogin } from "../../features/users/useLogin";
 import ModalTemplate from "./ModalTemplate.vue";
 
 const props = defineProps<{ visible: boolean }>();
@@ -11,6 +12,9 @@ const emit = defineEmits<{
 }>();
 
 const showPassword = ref(false);
+const email = ref("");
+const password = ref("");
+const { login } = useLogin();
 </script>
 
 <template>
@@ -27,12 +31,14 @@ const showPassword = ref(false);
         <div class="bg-white rounded shadow w-96 p-4">
           <h3 class="text-lg font-bold mb-4">Connexion</h3>
           <input
+            v-model="email"
             type="email"
             placeholder="Email"
             class="mb-2 w-full border p-2 rounded"
           />
           <div class="relative mb-2">
             <input
+              v-model="password"
               :type="showPassword ? 'text' : 'password'"
               placeholder="Mot de passe"
               class="w-full border p-2 pr-10 rounded"
@@ -52,7 +58,12 @@ const showPassword = ref(false);
           <div class="flex justify-end">
             <button
               class="bg-blue-600 text-white px-3 py-1 rounded"
-              @click="emit('submit')"
+              @click="
+                async () => {
+                  await login(email, password);
+                  emit('submit');
+                }
+              "
             >
               Se connecter
             </button>

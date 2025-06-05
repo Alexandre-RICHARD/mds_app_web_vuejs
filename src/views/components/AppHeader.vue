@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import { useAuth } from "../../features/users/useAuth";
+import { deleteCookie } from "../../helpers/cookie/deleteCookie.helper";
 import LoginModal from "./LoginModal.vue";
 import RegisterModal from "./RegisterModal.vue";
 
 const showLoginModal = ref(false);
 const showRegisterModal = ref(false);
+const { isLogged } = useAuth();
+
+const logout = () => {
+  deleteCookie("token");
+};
 </script>
 
 <template>
@@ -16,18 +23,28 @@ const showRegisterModal = ref(false);
       class="h-8 mr-4"
     />
     <div class="flex-1" />
-    <button
-      class="mr-2 text-blue-600 hover:underline"
-      @click="showLoginModal = true"
-    >
-      Connexion
-    </button>
-    <button
-      class="bg-blue-600 text-white px-2 py-1 rounded"
-      @click="showRegisterModal = true"
-    >
-      Inscription
-    </button>
+    <template v-if="!isLogged">
+      <button
+        class="mr-2 text-blue-600 hover:underline"
+        @click="showLoginModal = true"
+      >
+        Connexion
+      </button>
+      <button
+        class="bg-blue-600 text-white px-2 py-1 rounded"
+        @click="showRegisterModal = true"
+      >
+        Inscription
+      </button>
+    </template>
+    <template v-else>
+      <button
+        class="bg-red-600 text-white px-2 py-1 rounded"
+        @click="logout"
+      >
+        Déconnexion
+      </button>
+    </template>
   </header>
 
   <LoginModal

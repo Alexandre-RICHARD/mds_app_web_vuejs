@@ -1,39 +1,28 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from "vue";
-
 const props = defineProps<{
   maxWidth?: string;
   maxHeight?: string;
 }>();
+
 const emit = defineEmits<(e: "close") => void>();
-
-const modalRef = ref<HTMLElement | null>(null);
-
-const onClickOutside = (event: MouseEvent) => {
-  if (modalRef.value && !modalRef.value.contains(event.currentTarget as Node)) {
-    emit("close");
-  }
-};
-
-onMounted(() => {
-  document.addEventListener("mousedown", onClickOutside);
-});
-onBeforeUnmount(() => {
-  document.removeEventListener("mousedown", onClickOutside);
-});
 </script>
 
 <template>
-  <div class="modal-overlay">
+  <div
+    class="modal-overlay"
+    @click="emit('close')"
+  >
     <div
-      ref="modalRef"
       class="modal-content"
       :style="{
         maxWidth: props.maxWidth || '600px',
         maxHeight: props.maxHeight || '80vh',
       }"
+      @click.stop
     >
-      <slot />
+      <div class="modal-content-container">
+        <slot />
+      </div>
     </div>
   </div>
 </template>
@@ -51,16 +40,21 @@ onBeforeUnmount(() => {
   align-items: center;
   z-index: 1000;
 }
+
 .modal-content {
   background: white;
   border-radius: 8px;
   padding: 1rem;
   overflow: auto;
+  width: fit-content;
+  height: fit-content;
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;

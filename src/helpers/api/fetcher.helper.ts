@@ -1,5 +1,5 @@
 import { FetchMethodsEnum } from "../../enums/fetchMethods.enum";
-import type { FetchResponse } from "../../nexusExporter";
+import type { FetchResponse } from "../data/fetchResponse.type";
 
 type Args = {
   apiUrl: string;
@@ -18,6 +18,9 @@ export const fetcherHelper = async <T>({
     const response = await fetch(`${apiUrl}${endPoint}`, {
       headers: {
         Accept: "application/json",
+        ...(method !== FetchMethodsEnum.GET && {
+          "Content-Type": "application/json",
+        }),
       },
       method,
       body: method !== FetchMethodsEnum.GET ? JSON.stringify(body) : undefined,
@@ -25,10 +28,12 @@ export const fetcherHelper = async <T>({
     const responseData = {
       success: response.ok,
       status: `${response.status} - ${response.statusText}`,
+      headers: response.headers,
     };
     if (response.status === 404)
       // TODO Insert here unadapted requests
       return {
+        headers: response.headers,
         success: false,
         status: "Save don't able this request",
       };
