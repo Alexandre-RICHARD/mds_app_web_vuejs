@@ -1,11 +1,13 @@
 import { FetchMethodsEnum } from "../../enums/fetchMethods.enum";
 import type { FetchResponse } from "../data/fetchResponse.type";
+import { getAuthHeader } from "./getAuthHeader.helper";
 
 type Args = {
   apiUrl: string;
   endPoint: string;
   method: FetchMethodsEnum;
   body?: unknown;
+  withAuth?: boolean;
 };
 
 export const fetcherHelper = async <T>({
@@ -13,11 +15,13 @@ export const fetcherHelper = async <T>({
   endPoint,
   method,
   body,
+  withAuth = true,
 }: Args): Promise<FetchResponse<T>> => {
   try {
     const response = await fetch(`${apiUrl}${endPoint}`, {
       headers: {
         Accept: "application/json",
+        ...(withAuth ? getAuthHeader() : {}),
         ...(method !== FetchMethodsEnum.GET && {
           "Content-Type": "application/json",
         }),

@@ -17,13 +17,15 @@ export function useLogin() {
     error.value = null;
     const response = await fetcherHelper<{ token: string }>({
       apiUrl: VITE_API_URL as string,
-      endPoint: ApiEndpointEnum.USER_REGISTER,
+      endPoint: ApiEndpointEnum.USER_LOGIN,
       method: FetchMethodsEnum.POST,
       body: { email, password },
+      withAuth: false,
     });
     loading.value = false;
-    if (response.success && response.data) {
-      setCookie({ name: "token", value: response.data.token, hours: 1 });
+    const token = response.headers!.get("Authorization");
+    if (response.success && response.data && token) {
+      setCookie({ name: "token", value: token, hours: 1 });
       return true;
     }
     error.value = response.status;
