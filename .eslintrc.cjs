@@ -25,7 +25,7 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
     project: ["./tsconfig.json", "./tsconfig.node.json", "./tsconfig.app.json"],
-    
+
     tsconfigRootDir: __dirname,
     ecmaFeatures: {
       jsx: true,
@@ -67,8 +67,8 @@ module.exports = {
     "import/no-default-export": "error",
     "import/prefer-default-export": "off",
     "import/first": "error",
-    "import/no-extraneous-dependencies": ["error", { 
-      devDependencies: ["vite.config.ts", "vitest.setup.ts", "**/*.test.ts?(x)"] 
+    "import/no-extraneous-dependencies": ["error", {
+      devDependencies: ["vite.config.ts", "vitest.setup.ts", "**/*.test.ts?(x)"]
     }],
     "import/no-unused-modules": ["error", { "missingExports ": true, "unusedExports": true }],
     "simple-import-sort/imports": "error",
@@ -100,7 +100,15 @@ module.exports = {
     // Disable old and depreciated rules
     "@typescript-eslint/lines-between-class-members": "off",
     "@typescript-eslint/no-throw-literal": "off",
-    "react-hooks/rules-of-hooks": "off"
+    "react-hooks/rules-of-hooks": "off",
+    "import/no-unused-modules": "off"
   },
-  overrides: [],
+  overrides: [
+    {
+      "files": ["*.d.ts"],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    }
+  ]
 };
