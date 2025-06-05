@@ -28,10 +28,11 @@ export function useRegister() {
       endPoint: ApiEndpointEnum.USER_REGISTER,
       method: FetchMethodsEnum.POST,
       body: args,
+      withAuth: false,
     });
     loading.value = false;
     if (response.success && response.data) {
-      setCookie({ name: "token", value: MET LE CODE ICI, hours: 1 });
+      setCookie({ name: "token", value: response.data.token, hours: 1 });
       return true;
     }
     error.value = response.status;
