@@ -17,6 +17,9 @@ const counter = useCounterStore();
           Increment
         </button>
         <p class="mt-2 text-xl font-bold">Count: {{ counter.count }}</p>
+        <router-link to="/product" class="text-blue-600 underline mt-4 block">
+          Voir un produit
+        </router-link>
       </div>
     </main>
   </div>

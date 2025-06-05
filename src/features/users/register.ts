@@ -1,4 +1,6 @@
-type Args = {
+import { useRegister } from './useRegister';
+
+export type RegisterArgs = {
   firstName: string;
   lastName: string;
   email: string;
@@ -6,6 +8,7 @@ type Args = {
   confirmationPassword: string;
 };
 
-export function userRegister(userRegister: Args) {
-  
+export function userRegister(args: RegisterArgs) {
+  const { register } = useRegister();
+  return register(args);
 }
