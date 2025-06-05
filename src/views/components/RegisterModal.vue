@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import { userRegister } from "../../features/users/register";
 import ModalTemplate from "./ModalTemplate.vue";
 
 const props = defineProps<{ visible: boolean }>();
 const emit = defineEmits<{
   (e: "close"): void;
-  (e: "submit"): void;
   (e: "switch"): void;
 }>();
 
@@ -68,7 +68,7 @@ const showPassword = ref(false);
           <div class="flex justify-end mt-4">
             <button
               class="bg-blue-600 text-white px-3 py-1 rounded"
-              @click="emit('submit')"
+              @click="userRegister"
             >
               S'inscrire
             </button>

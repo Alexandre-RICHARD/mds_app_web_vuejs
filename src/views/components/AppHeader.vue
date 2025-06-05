@@ -38,7 +38,6 @@ const showRegisterModal = ref(false);
         showRegisterModal = true;
       }
     "
-    @submit="() => {}"
     @close="
       () => {
         showLoginModal = false;
@@ -53,7 +52,6 @@ const showRegisterModal = ref(false);
         showLoginModal = true;
       }
     "
-    @submit="() => {}"
     @close="
       () => {
         showRegisterModal = false;
