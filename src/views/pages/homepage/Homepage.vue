@@ -1,72 +1,24 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
+import { useCartStore } from "../../../stores/cart";
 import { useLanguageStore } from "../../../stores/language";
 import AppHeader from "../../components/AppHeader.vue";
-
-type Product = {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  category: string;
-  image: string;
-};
+import type { ProductCategoryEnum } from "./productCategory.enum";
+import { productsList } from "./productsList";
 
 const languageStore = useLanguageStore();
-
-const products = ref<Product[]>([
-  {
-    id: 1,
-    name: "Laptop",
-    description: "Powerful laptop",
-    price: 1499,
-    category: "Electronics",
-    image: "https://via.placeholder.com/300x200",
-  },
-  {
-    id: 2,
-    name: "Smartphone",
-    description: "Latest generation phone",
-    price: 799,
-    category: "Electronics",
-    image: "https://via.placeholder.com/300x200",
-  },
-  {
-    id: 3,
-    name: "Office chair",
-    description: "Comfortable chair for work",
-    price: 199,
-    category: "Furniture",
-    image: "https://via.placeholder.com/300x200",
-  },
-  {
-    id: 4,
-    name: "Desk lamp",
-    description: "Light up your desk",
-    price: 49,
-    category: "Decoration",
-    image: "https://via.placeholder.com/300x200",
-  },
-  {
-    id: 5,
-    name: "Vue.js book",
-    description: "Learn Vue.js quickly",
-    price: 29,
-    category: "Books",
-    image: "https://via.placeholder.com/300x200",
-  },
-]);
+const cartStore = useCartStore();
 
 const search = ref("");
-const selectedCategory = ref<string | null>(null);
+const selectedCategory = ref<ProductCategoryEnum | null>(null);
 
 const categories = computed(() =>
-  Array.from(new Set(products.value.map((p) => p.category))),
+  Array.from(new Set(productsList.value.map((p) => p.category))),
 );
 
 const filteredProducts = computed(() =>
-  products.value.filter((p) => {
+  productsList.value.filter((p) => {
     const matchCategory =
       !selectedCategory.value || p.category === selectedCategory.value;
     const lowerSearch = search.value.toLowerCase();
@@ -121,13 +73,25 @@ const filteredProducts = computed(() =>
           class="border rounded p-4"
         >
           <img
-            :src="product.image"
+            :src="`./src/assets/productImages/${product.image}`"
             alt=""
             class="w-full h-32 object-cover mb-2"
           />
           <h3 class="font-bold mb-1">{{ product.name }}</h3>
           <p class="text-sm mb-1">{{ product.description }}</p>
           <p class="font-semibold">{{ product.price.toFixed(2) }} €</p>
+          <button
+            class="mt-2 px-2 py-1 bg-blue-600 text-white rounded"
+            @click="
+              cartStore.addItem({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+              })
+            "
+          >
+            {{ languageStore.t("addToCart") }}
+          </button>
         </div>
       </div>
     </main>

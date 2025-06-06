@@ -30,6 +30,9 @@ export const translations = {
     productDescription: "Voici un super produit.",
     searchPlaceholder: "Rechercher un produit",
     allCategories: "Toutes les catégories",
+    addToCart: "Ajouter au panier",
+    cart: "Panier",
+    cartEmpty: "Votre panier est vide",
   },
   [LanguageEnum.EN]: {
     home: "Home",
@@ -60,5 +63,8 @@ export const translations = {
     productDescription: "Here is an awesome product.",
     searchPlaceholder: "Search a product",
     allCategories: "All categories",
+    addToCart: "Add to cart",
+    cart: "Cart",
+    cartEmpty: "Your cart is empty",
   },
 };

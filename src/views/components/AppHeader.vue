@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import { useCartStore } from "../../stores/cart";
 import { useLanguageStore } from "../../stores/language";
 import { useUserStore } from "../../stores/user";
+import CartDropdown from "./CartDropdown.vue";
 import LangSwitcher from "./LangSwitcher.vue";
 import LoginModal from "./LoginModal.vue";
 import RegisterModal from "./RegisterModal.vue";
 
 const showLoginModal = ref(false);
 const showRegisterModal = ref(false);
+const showCart = ref(false);
 const userStore = useUserStore();
 const languageStore = useLanguageStore();
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -27,6 +31,18 @@ const languageStore = useLanguageStore();
       {{ languageStore.t("home") }}
     </router-link>
     <div class="flex-1" />
+    <div class="relative mr-2">
+      <button
+        class="px-2 py-1 border rounded"
+        @click="showCart = !showCart"
+      >
+        🛒 ({{ cartStore.totalCount }})
+      </button>
+      <CartDropdown
+        v-if="showCart"
+        class="absolute right-0"
+      />
+    </div>
     <template v-if="!userStore.isConnected">
       <button
         class="mr-2 text-blue-600 hover:underline"
