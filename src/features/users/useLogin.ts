@@ -38,6 +38,11 @@ export function useLogin() {
       const fullName = `${response.data.user.firstName} ${response.data.user.lastName}`;
       setCookie({ name: CookieEnum.TOKEN, value: token, hours: 12 });
       setCookie({ name: CookieEnum.FULLNAME, value: fullName, hours: 12 });
+      setCookie({
+        name: CookieEnum.EMAIL,
+        value: response.data.user.email,
+        hours: 12,
+      });
       storeUser.login({
         fullName,
       });

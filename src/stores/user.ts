@@ -23,6 +23,7 @@ export const useUserStore = defineStore("user", {
       this.fullName = "";
       deleteCookie(CookieEnum.TOKEN);
       deleteCookie(CookieEnum.FULLNAME);
+      deleteCookie(CookieEnum.EMAIL);
     },
   },
 });
