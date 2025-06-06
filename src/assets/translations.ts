@@ -33,6 +33,7 @@ export const translations = {
     addToCart: "Ajouter au panier",
     cart: "Panier",
     cartEmpty: "Votre panier est vide",
+    cartTotal: "Total",
   },
   [LanguageEnum.EN]: {
     home: "Home",
@@ -66,5 +67,6 @@ export const translations = {
     addToCart: "Add to cart",
     cart: "Cart",
     cartEmpty: "Your cart is empty",
+    cartTotal: "Total",
   },
 };
