@@ -47,6 +47,7 @@ export function useRegister() {
       });
       storeUser.login({
         fullName,
+        email: response.data.user.email,
       });
 
       return true;
