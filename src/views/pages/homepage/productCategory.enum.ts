@@ -4,4 +4,5 @@ export enum ProductCategoryEnum {
   Decoration = "Decoration",
   Books = "Books",
   Appliances = "Appliances",
+  Surprise = "Surprise",
 }

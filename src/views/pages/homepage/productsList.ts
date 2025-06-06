@@ -62,11 +62,11 @@ export const productsList = ref<Product[]>([
   },
   {
     id: 8,
-    name: "Microwave Oven",
-    description: "Quick and efficient cooking",
-    price: 129,
-    category: ProductCategoryEnum.Appliances,
-    image: "microwave.jpg",
+    name: "Happy Birthday",
+    description: "Bonus point ?",
+    price: 0,
+    category: ProductCategoryEnum.Surprise,
+    image: "happyBirthday.jpg",
   },
   {
     id: 9,
