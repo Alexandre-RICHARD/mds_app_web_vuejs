@@ -2,12 +2,15 @@
 import { ref } from "vue";
 
 import { useUserStore } from "../../stores/user";
+import { useLanguageStore } from "../../stores/language";
 import LoginModal from "./LoginModal.vue";
 import RegisterModal from "./RegisterModal.vue";
+import LangSwitcher from "./LangSwitcher.vue";
 
 const showLoginModal = ref(false);
 const showRegisterModal = ref(false);
 const userStore = useUserStore();
+const languageStore = useLanguageStore();
 </script>
 
 <template>
@@ -21,7 +24,7 @@ const userStore = useUserStore();
       to="/"
       class="text-l mx-2"
     >
-      Accueil
+      {{ languageStore.t('home') }}
     </router-link>
     <div class="flex-1" />
     <template v-if="!userStore.isConnected">
@@ -29,13 +32,13 @@ const userStore = useUserStore();
         class="mr-2 text-blue-600 hover:underline"
         @click="showLoginModal = true"
       >
-        Connexion
+        {{ languageStore.t('login') }}
       </button>
       <button
         class="bg-blue-600 text-white px-2 py-1 rounded"
         @click="showRegisterModal = true"
       >
-        Inscription
+        {{ languageStore.t('register') }}
       </button>
     </template>
     <template v-else>
@@ -49,9 +52,10 @@ const userStore = useUserStore();
         class="bg-red-600 text-white px-2 py-1 rounded"
         @click="userStore.disconnect"
       >
-        Déconnexion
+        {{ languageStore.t('logout') }}
       </button>
     </template>
+    <LangSwitcher class="ml-2" />
   </header>
 
   <LoginModal
