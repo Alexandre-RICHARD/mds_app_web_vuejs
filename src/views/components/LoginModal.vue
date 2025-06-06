@@ -2,6 +2,7 @@
 import { ref } from "vue";
 
 import { useLogin } from "../../features/users/useLogin";
+import { useLanguageStore } from "../../stores/language";
 import ModalTemplate from "./ModalTemplate.vue";
 
 const props = defineProps<{ visible: boolean }>();
@@ -14,6 +15,7 @@ const showPassword = ref(false);
 const email = ref("alexandrichard99@gmail.com");
 const password = ref("au4uqbf11");
 const { login } = useLogin();
+const languageStore = useLanguageStore();
 
 async function handleLogin() {
   try {
@@ -40,18 +42,20 @@ async function handleLogin() {
         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
       >
         <div class="bg-white rounded shadow w-96 p-4">
-          <h3 class="text-lg font-bold mb-4">Connexion</h3>
+          <h3 class="text-lg font-bold mb-4">
+            {{ languageStore.t("loginTitle") }}
+          </h3>
           <input
             v-model="email"
             type="email"
-            placeholder="Email"
+            :placeholder="languageStore.t('emailPlaceholder')"
             class="mb-2 w-full border p-2 rounded"
           />
           <div class="relative mb-2">
             <input
               v-model="password"
               :type="showPassword ? 'text' : 'password'"
-              placeholder="Mot de passe"
+              :placeholder="languageStore.t('passwordPlaceholder')"
               class="w-full border p-2 pr-10 rounded"
             />
             <span
@@ -63,7 +67,7 @@ async function handleLogin() {
           </div>
           <div class="text-right mb-4">
             <button class="text-sm text-blue-600 hover:underline">
-              Mot de passe oublié ?
+              {{ languageStore.t("forgotPassword") }}
             </button>
           </div>
           <div class="flex justify-end">
@@ -71,7 +75,7 @@ async function handleLogin() {
               class="bg-blue-600 text-white px-3 py-1 rounded"
               @click="handleLogin"
             >
-              Se connecter
+              {{ languageStore.t("loginAction") }}
             </button>
           </div>
           <div class="flex justify-end pt-2">
@@ -79,7 +83,7 @@ async function handleLogin() {
               class="text-sm text-blue-600 hover:underline"
               @click="emit('switch')"
             >
-              Je n'ai pas encore de compte
+              {{ languageStore.t("noAccount") }}
             </button>
           </div>
         </div>
