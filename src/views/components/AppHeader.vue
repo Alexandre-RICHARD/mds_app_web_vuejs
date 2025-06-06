@@ -17,6 +17,12 @@ const userStore = useUserStore();
       alt="Logo"
       class="h-8 mr-4"
     />
+    <router-link
+      to="/"
+      class="text-l mx-2"
+    >
+      Accueil
+    </router-link>
     <div class="flex-1" />
     <template v-if="!userStore.isConnected">
       <button
