@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import { useLanguageStore } from "../../stores/language";
+
 import { useRegister } from "../../features/users/useRegister";
 import ModalTemplate from "./ModalTemplate.vue";
 
@@ -17,6 +19,7 @@ const email = ref("");
 const password = ref("");
 const confirmationPassword = ref("");
 const { register } = useRegister();
+const languageStore = useLanguageStore();
 
 async function handleRegister() {
   try {
@@ -46,28 +49,30 @@ async function handleRegister() {
         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
       >
         <div class="bg-white rounded shadow w-96 p-4">
-          <h3 class="text-lg font-bold mb-4">Inscription</h3>
+          <h3 class="text-lg font-bold mb-4">
+            {{ languageStore.t('registerTitle') }}
+          </h3>
           <input
             v-model="firstName"
-            placeholder="Prénom"
+            :placeholder="languageStore.t('firstNamePlaceholder')"
             class="mb-2 w-full border p-2 rounded"
           />
           <input
             v-model="lastName"
-            placeholder="Nom"
+            :placeholder="languageStore.t('lastNamePlaceholder')"
             class="mb-2 w-full border p-2 rounded"
           />
           <input
             v-model="email"
             type="email"
-            placeholder="Email"
+            :placeholder="languageStore.t('emailPlaceholder')"
             class="mb-2 w-full border p-2 rounded"
           />
           <div class="relative mb-2">
             <input
               v-model="password"
               :type="showPassword ? 'text' : 'password'"
-              placeholder="Mot de passe"
+              :placeholder="languageStore.t('passwordPlaceholder')"
               class="w-full border p-2 pr-10 rounded"
             />
             <span
@@ -81,7 +86,7 @@ async function handleRegister() {
             <input
               v-model="confirmationPassword"
               :type="showPassword ? 'text' : 'password'"
-              placeholder="Confirmation du mot de passe"
+              :placeholder="languageStore.t('passwordConfirmationPlaceholder')"
               class="w-full border p-2 pr-10 rounded"
             />
             <span
@@ -96,7 +101,7 @@ async function handleRegister() {
               class="bg-blue-600 text-white px-3 py-1 rounded"
               @click="handleRegister"
             >
-              S'inscrire
+              {{ languageStore.t('registerAction') }}
             </button>
           </div>
           <div class="flex justify-end pt-2">
@@ -104,7 +109,7 @@ async function handleRegister() {
               class="text-sm text-blue-600 hover:underline"
               @click="emit('switch')"
             >
-              J'ai déjà un compte
+              {{ languageStore.t('haveAccount') }}
             </button>
           </div>
         </div>

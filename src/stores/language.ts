@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import { translations } from "../assets/translations";
 import { LanguageEnum } from "../enums/language.enum";
 
-type HeaderTranslationKey = keyof (typeof translations)[LanguageEnum.FR];
+type TranslationKey = keyof (typeof translations)[LanguageEnum.FR];
 
 export const useLanguageStore = defineStore("language", {
   state: () => ({
@@ -15,8 +15,8 @@ export const useLanguageStore = defineStore("language", {
     },
   },
   getters: {
-    t: (state) => (key: HeaderTranslationKey) =>
+    t: (state) => (key: TranslationKey) =>
       translations[state.current][key],
   },
 });
-export type { HeaderTranslationKey };
+export type { TranslationKey };
