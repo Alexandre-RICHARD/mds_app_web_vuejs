@@ -29,5 +29,8 @@ export const useUserStore = defineStore("user", {
       deleteCookie(CookieEnum.FULLNAME);
       deleteCookie(CookieEnum.EMAIL);
     },
+    updateEmail(email: string) {
+      this.email = email;
+    },
   },
 });
