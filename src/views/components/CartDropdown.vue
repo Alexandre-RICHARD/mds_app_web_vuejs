@@ -43,6 +43,10 @@ const languageStore = useLanguageStore();
           ×
         </button>
       </div>
+      <p class="text-right font-semibold mt-2">
+        {{ languageStore.t("cartTotal") }}:
+        {{ cartStore.totalPrice.toFixed(2) }} €
+      </p>
     </div>
   </div>
 </template>
