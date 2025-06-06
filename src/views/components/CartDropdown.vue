@@ -47,6 +47,12 @@ const languageStore = useLanguageStore();
         {{ languageStore.t("cartTotal") }}:
         {{ cartStore.totalPrice.toFixed(2) }} €
       </p>
+      <router-link
+        to="/checkout/address"
+        class="block mt-2 bg-blue-600 text-white text-center px-2 py-1 rounded"
+      >
+        {{ languageStore.t("checkoutAction") }}
+      </router-link>
     </div>
   </div>
 </template>

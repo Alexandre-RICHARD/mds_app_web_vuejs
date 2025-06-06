@@ -12,11 +12,11 @@ const emit = defineEmits<{
 }>();
 
 const showPassword = ref(false);
-const firstName = ref("");
-const lastName = ref("");
-const email = ref("");
-const password = ref("");
-const confirmationPassword = ref("");
+const firstName = ref("alex");
+const lastName = ref("richard");
+const email = ref("a@gmail.com");
+const password = ref("abcdefg");
+const confirmationPassword = ref("abcdefg");
 const { register } = useRegister();
 const languageStore = useLanguageStore();
 
