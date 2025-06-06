@@ -6,14 +6,7 @@ import AppHeader from "../../components/AppHeader.vue";
   <div>
     <AppHeader />
     <main class="p-4">
-      <div class="text-center">
-        <router-link
-          to="/product"
-          class="text-blue-600 underline mt-4 block"
-        >
-          Voir un produit
-        </router-link>
-      </div>
+      <div class="text-center">Rien ici</div>
     </main>
   </div>
 </template>

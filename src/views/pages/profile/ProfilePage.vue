@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 import { useUpdateMail } from "../../../features/users/useUpdateMail";
 import { useUpdatePassword } from "../../../features/users/useUpdatePassword";
+import { useLanguageStore } from "../../../stores/language";
 import AppHeader from "../../components/AppHeader.vue";
 import AuthGard from "../../components/AuthGard.vue";
 
@@ -13,6 +14,7 @@ const confirmPassword = ref("");
 
 const { updateMail } = useUpdateMail();
 const { updatePassword } = useUpdatePassword();
+const languageStore = useLanguageStore();
 
 async function handleUpdateMail() {
   try {
@@ -45,45 +47,49 @@ async function handleUpdatePassword() {
       <AppHeader />
       <main class="p-4 space-y-8">
         <section>
-          <h1 class="text-xl font-bold mb-4">Modifier mon adresse email</h1>
+          <h1 class="text-xl font-bold mb-4">
+            {{ languageStore.t("modifyEmail") }}
+          </h1>
           <input
             v-model="newEmail"
             type="email"
-            placeholder="Nouvelle adresse email"
+            :placeholder="languageStore.t('newEmailPlaceholder')"
             class="mb-2 w-full border p-2 rounded"
           />
           <button
             class="bg-blue-600 text-white px-3 py-1 rounded"
             @click="handleUpdateMail"
           >
-            Confirmer
+            {{ languageStore.t("confirm") }}
           </button>
         </section>
         <section>
-          <h1 class="text-xl font-bold mb-4">Modifier mon mot de passe</h1>
+          <h1 class="text-xl font-bold mb-4">
+            {{ languageStore.t("modifyPassword") }}
+          </h1>
           <input
             v-model="oldPassword"
             type="password"
-            placeholder="Ancien mot de passe"
+            :placeholder="languageStore.t('oldPasswordPlaceholder')"
             class="mb-2 w-full border p-2 rounded"
           />
           <input
             v-model="newPassword"
             type="password"
-            placeholder="Nouveau mot de passe"
+            :placeholder="languageStore.t('newPasswordPlaceholder')"
             class="mb-2 w-full border p-2 rounded"
           />
           <input
             v-model="confirmPassword"
             type="password"
-            placeholder="Confirmation du nouveau mot de passe"
+            :placeholder="languageStore.t('newPasswordConfirmationPlaceholder')"
             class="mb-2 w-full border p-2 rounded"
           />
           <button
             class="bg-blue-600 text-white px-3 py-1 rounded"
             @click="handleUpdatePassword"
           >
-            Confirmer
+            {{ languageStore.t("confirm") }}
           </button>
         </section>
       </main>
