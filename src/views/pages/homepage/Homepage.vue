@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 
 import { useLanguageStore } from "../../../stores/language";
+import { useCartStore } from "../../../stores/cart";
 import AppHeader from "../../components/AppHeader.vue";
 
 type Product = {
@@ -14,6 +15,7 @@ type Product = {
 };
 
 const languageStore = useLanguageStore();
+const cartStore = useCartStore();
 
 const products = ref<Product[]>([
   {
@@ -128,6 +130,12 @@ const filteredProducts = computed(() =>
           <h3 class="font-bold mb-1">{{ product.name }}</h3>
           <p class="text-sm mb-1">{{ product.description }}</p>
           <p class="font-semibold">{{ product.price.toFixed(2) }} €</p>
+          <button
+            class="mt-2 px-2 py-1 bg-blue-600 text-white rounded"
+            @click="cartStore.addItem({ id: product.id, name: product.name, price: product.price })"
+          >
+            {{ languageStore.t('addToCart') }}
+          </button>
         </div>
       </div>
     </main>
