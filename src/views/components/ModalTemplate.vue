@@ -13,7 +13,7 @@ const emit = defineEmits<(e: "close") => void>();
     @click="emit('close')"
   >
     <div
-      class="modal-content"
+      :class="`modal-content`"
       :style="{
         maxWidth: props.maxWidth || '600px',
         maxHeight: props.maxHeight || '80vh',
