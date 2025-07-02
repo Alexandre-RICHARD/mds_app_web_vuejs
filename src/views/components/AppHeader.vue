@@ -18,7 +18,7 @@ const cartStore = useCartStore();
 </script>
 
 <template>
-  <header class="flex items-center px-4 py-2 bg-gray-200">
+  <header class="flex items-center px-4 py-2 bg-blue-200">
     <img
       src="@/assets/logo.png"
       alt="Logo"
